@@ -1,5 +1,6 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace CMySql
 {
@@ -8,10 +9,16 @@ namespace CMySql
         public static void Main(string[] args)
         {
             Console.WriteLine("Acceso a dbprueba");
-            MySqlConnection mySqlConnection = new MySqlConnection(
+            IDbConnection dbConnection = new MySqlConnection(
                 "server=localhost;database=dbprueba;user=root;password=sistemas;ssl-mode=none");
 
-            mySqlConnection.Open();
+            dbConnection.Open();
+
+            IDbCommand dbCommand = dbConnection.CreateCommand();
+            dbCommand.CommandText = "select * from categoria";
+            IDataReader dataReader = dbCommand.ExecuteReader();
+
+            dbConnection.Close();
         }
     }
 }
