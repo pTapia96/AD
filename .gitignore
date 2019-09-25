@@ -6,6 +6,8 @@
 # ISO files
 *.iso
 
+# RUN files
+*.run
 
 # User-specific files
 *.suo
